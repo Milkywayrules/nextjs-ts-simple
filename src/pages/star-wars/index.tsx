@@ -1,9 +1,17 @@
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import EmptyMessage from '../../components/EmptyMessage'
+import ErrorMessage from '../../components/ErrorMessage'
+import LoadingMessage from '../../components/LoadingMessage'
 import PersonInfo from '../../components/PersonInfo'
 import { PeopleAttribute } from './[id]'
 
 interface Props {}
+
+const fetchPerson = async () => {
+  const res = await fetch(`https://swapi.dev/api/people`)
+  return await res.json()
+}
 
 /**
  * Go to localhost:port/star-wars
@@ -14,19 +22,19 @@ const StarWars: NextPage = ({}) => {
   const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    fetch('https://swapi.dev/api/people')
-      .then(x => x.json())
+    // fetch data and then set result into state
+    fetchPerson()
       .then(json => setResData(json.results))
       .catch(err => {
         setIsError(true)
         console.error(err)
       })
       .finally(() => setIsLoading(false))
-  }, [])
+  }, []) // depends on empty array, only run once on componentDidMount lifecycle
 
-  if (isLoading) return <p className="font-bold text-blue-600">Loading...</p>
-  if (isError) return <p className="font-bold text-rose-600">Something error.</p>
-  if (!resData) return <p className="font-bold text-rose-600">Data not found.</p>
+  if (isLoading) return <LoadingMessage />
+  if (isError) return <ErrorMessage />
+  if (!resData) return <EmptyMessage />
 
   return (
     <div className="flex flex-col gap-4">
