@@ -4,7 +4,7 @@ import EmptyMessage from '../../components/EmptyMessage'
 import ErrorMessage from '../../components/ErrorMessage'
 import LoadingMessage from '../../components/LoadingMessage'
 import PersonInfo from '../../components/PersonInfo'
-import { PersonAttribute } from './[id]'
+import { PersonAttribute } from './star-wars'
 
 interface Props {}
 

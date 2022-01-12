@@ -2,22 +2,9 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import PersonInfo from '../../components/PersonInfo'
+import { ApiResponse } from './star-wars'
 
 interface Props {}
-
-/**
- * Because we fetch data from /people endpoint
- */
-export interface PersonAttribute {
-  name: string
-  url: string
-}
-
-interface NotFoundApiResponse {
-  detail: string
-}
-
-type ApiResponse = PersonAttribute | NotFoundApiResponse
 
 const fetchPerson = async (id?: string) => {
   const res = await fetch(`https://swapi.dev/api/people/${id}`)
