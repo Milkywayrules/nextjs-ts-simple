@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
-import SimpleButton from "../components/SimpleButton";
-import SimpleForm from "../components/SimpleForm";
+import type { NextPage } from 'next'
+import SimpleButton from '../components/SimpleButton'
+import SimpleForm from '../components/SimpleForm'
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <SimpleForm />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

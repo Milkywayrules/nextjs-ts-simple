@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react'
 
 interface Props {}
 
@@ -14,13 +14,10 @@ interface Props {}
  */
 const SimpleButton: FC<Props> = ({}) => {
   return (
-    <button
-      name="example-btn"
-      onClick={(e) => console.log("Element name:", e.currentTarget.name)}
-    >
+    <button name="example-btn" onClick={e => console.log('Element name:', e.currentTarget.name)}>
       Click me!
     </button>
-  );
-};
+  )
+}
 
-export default SimpleButton;
+export default SimpleButton

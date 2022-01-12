@@ -1,9 +1,9 @@
-import { FC, useRef, useState } from "react";
+import { FC, useRef, useState } from 'react'
 
 interface Props {}
 
 const inputClassName =
-  "px-3 py-1 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400";
+  'px-3 py-1 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400'
 
 /**
  * A simple form as an example that trigger onSubmit event and logging the form data.
@@ -27,18 +27,18 @@ const SimpleForm: FC<Props> = ({}) => {
    * and the more detailed explanation can be found on google. lol
    */
   // 1st approach
-  const firstnameRef = useRef<null | HTMLInputElement>(null); // initial value is null
-  const lastnameRef = useRef(null);
+  const firstnameRef = useRef<null | HTMLInputElement>(null) // initial value is null
+  const lastnameRef = useRef(null)
 
   // 2nd approach
-  const [usernameState, setUsernameInput] = useState(""); // initial value is empty string
-  const [emailState, setEmailInput] = useState(""); // initial value is empty string
+  const [usernameState, setUsernameInput] = useState('') // initial value is empty string
+  const [emailState, setEmailInput] = useState('') // initial value is empty string
 
   // 2nd approach (but pass an object as the state data)
   const [mixedInputElement, setMixedInputElement] = useState({
-    password: "",
-    address: "",
-  }); // pass default value as an empty object
+    password: '',
+    address: '',
+  }) // pass default value as an empty object
 
   return (
     // this is called fragment, same as <React.Fragment> blablabla... </React.Fragment>
@@ -46,37 +46,37 @@ const SimpleForm: FC<Props> = ({}) => {
       <form
         name="simple-form"
         className="flex flex-col gap-2"
-        onSubmit={(e) => {
-          e.preventDefault();
+        onSubmit={e => {
+          e.preventDefault()
 
           // the simplest and good to go for grabbing all data on form
-          const data = new FormData(e.currentTarget);
+          const data = new FormData(e.currentTarget)
 
-          console.log("---");
+          console.log('---')
 
           // grab all input field that has a name prop
-          console.log("Print form data:");
-          data.forEach((value, key) => console.log(`{ ${key}: "${value}" }`));
+          console.log('Print form data:')
+          data.forEach((value, key) => console.log(`{ ${key}: "${value}" }`))
 
-          console.log("---");
+          console.log('---')
 
           // or grab an individual input field with his name
-          console.log("username:", e.currentTarget.username.value);
-          console.log("address:", e.currentTarget.address.value);
+          console.log('username:', e.currentTarget.username.value)
+          console.log('address:', e.currentTarget.address.value)
 
-          console.log("---");
+          console.log('---')
 
           // or grab it from ref
           console.log(
-            "first name:",
-            firstnameRef.current && firstnameRef.current.value // check not null first
-          );
+            'first name:',
+            firstnameRef.current && firstnameRef.current.value, // check not null first
+          )
 
-          console.log("---");
+          console.log('---')
 
           // or grab it from state
-          console.log("email:", emailState);
-          console.log("password:", mixedInputElement.password);
+          console.log('email:', emailState)
+          console.log('password:', mixedInputElement.password)
         }}
       >
         {/* using ref */}
@@ -101,7 +101,7 @@ const SimpleForm: FC<Props> = ({}) => {
           type="text"
           name="username"
           value={usernameState}
-          onChange={(e) => setUsernameInput(e.target.value)} // using state
+          onChange={e => setUsernameInput(e.target.value)} // using state
           className={inputClassName}
         />
         <input
@@ -109,7 +109,7 @@ const SimpleForm: FC<Props> = ({}) => {
           type="text"
           name="email"
           value={emailState}
-          onChange={(e) => setEmailInput(e.target.value)} // using state
+          onChange={e => setEmailInput(e.target.value)} // using state
           className={inputClassName}
         />
 
@@ -123,7 +123,7 @@ const SimpleForm: FC<Props> = ({}) => {
           // using state (value as an object)
           // spread the existing value, then replace password with e.target.value
           // so the other keys is reserved and not replaced
-          onChange={(e) =>
+          onChange={e =>
             setMixedInputElement({
               ...mixedInputElement,
               password: e.target.value,
@@ -139,7 +139,7 @@ const SimpleForm: FC<Props> = ({}) => {
           // using state (value as an object)
           // spread the existing value, then replace addres with e.target.value
           // so the other keys is reserved and not replaced
-          onChange={(e) =>
+          onChange={e =>
             setMixedInputElement({
               ...mixedInputElement,
               address: e.target.value,
@@ -151,7 +151,7 @@ const SimpleForm: FC<Props> = ({}) => {
         <input
           placeholder="Unrecognized input because we not provide a name prop"
           type="text"
-          className={inputClassName + " focus:ring-rose-500"}
+          className={inputClassName + ' focus:ring-rose-500'}
         />
 
         <div className="mt-2"></div>
@@ -164,14 +164,11 @@ const SimpleForm: FC<Props> = ({}) => {
         </button>
       </form>
 
-      <p>
-        Your first name is:{" "}
-        {(firstnameRef.current && firstnameRef.current.value) || "-"}
-      </p>
-      <p>Your username is: {usernameState || "-"}</p>
-      <p>Your password is: {mixedInputElement.password || "-"}</p>
+      <p>Your first name is: {(firstnameRef.current && firstnameRef.current.value) || '-'}</p>
+      <p>Your username is: {usernameState || '-'}</p>
+      <p>Your password is: {mixedInputElement.password || '-'}</p>
     </>
-  );
-};
+  )
+}
 
-export default SimpleForm;
+export default SimpleForm
