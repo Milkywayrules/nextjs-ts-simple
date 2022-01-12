@@ -4,7 +4,7 @@ import EmptyMessage from '../../components/EmptyMessage'
 import ErrorMessage from '../../components/ErrorMessage'
 import LoadingMessage from '../../components/LoadingMessage'
 import PersonInfo from '../../components/PersonInfo'
-import { PeopleAttribute } from './[id]'
+import { PersonAttribute } from './[id]'
 
 interface Props {}
 
@@ -17,7 +17,7 @@ const fetchPerson = async () => {
  * Go to localhost:port/star-wars
  */
 const StarWars: NextPage = ({}) => {
-  const [resData, setResData] = useState<PeopleAttribute[]>([])
+  const [resData, setResData] = useState<PersonAttribute[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 

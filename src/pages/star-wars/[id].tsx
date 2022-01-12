@@ -1,13 +1,14 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import PersonInfo from '../../components/PersonInfo'
 
 interface Props {}
 
 /**
  * Because we fetch data from /people endpoint
  */
-export interface PeopleAttribute {
+export interface PersonAttribute {
   name: string
   url: string
 }
@@ -16,7 +17,12 @@ interface NotFoundApiResponse {
   detail: string
 }
 
-type ApiResponse = PeopleAttribute | NotFoundApiResponse
+type ApiResponse = PersonAttribute | NotFoundApiResponse
+
+const fetchPerson = async (id?: string) => {
+  const res = await fetch(`https://swapi.dev/api/people/${id}`)
+  return await res.json()
+}
 
 /**
  * Go to localhost:port/star-wars/77
@@ -30,17 +36,17 @@ const StarWars: NextPage = ({}) => {
   const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    if (id) {
-      fetch(`https://swapi.dev/api/people/${id}`)
-        .then(x => x.json())
-        .then(json => setResData(json))
-        .catch(err => {
-          setIsError(true)
-          console.error(err)
-        })
-        .finally(() => setIsLoading(false))
-    }
-  }, [])
+    const newId = Array.isArray(id) ? id[0] : id
+
+    // fetch data and then set result into state
+    fetchPerson(newId)
+      .then(json => setResData(json))
+      .catch(err => {
+        setIsError(true)
+        console.error(err)
+      })
+      .finally(() => setIsLoading(false))
+  }, []) // depends on empty array, only run once on componentDidMount lifecycle
 
   if (isLoading) return <p className="font-bold text-blue-600">Loading...</p>
   if (isError) return <p className="font-bold text-rose-600">Something error.</p>
@@ -62,19 +68,7 @@ const StarWars: NextPage = ({}) => {
   return 'detail' in resData ? (
     <div>{resData.detail}</div>
   ) : (
-    <div>
-      <p>Name: {resData.name}</p>
-      <p>
-        Details:{' '}
-        <a
-          href={resData.url}
-          target="_blank"
-          className="text-emerald-600 underline hover:text-emerald-500"
-        >
-          {resData.url}
-        </a>
-      </p>
-    </div>
+    <PersonInfo key={resData.url} person={resData} />
   )
 }
 
