@@ -18,8 +18,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
+          Test github account email
         </p>
 
         <div className={styles.grid}>
