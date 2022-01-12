@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
-import React from "react";
 import SimpleButton from "../components/SimpleButton";
 import SimpleForm from "../components/SimpleForm";
 
 const Home: NextPage = () => {
   return (
-    <React.Fragment>
+    <>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>;
       {/* call this button component */}
       <SimpleButton />
@@ -16,7 +15,7 @@ const Home: NextPage = () => {
         {/* form component example */}
         <SimpleForm />
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
