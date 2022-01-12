@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import PersonInfo from '../../components/PersonInfo'
 import { PeopleAttribute } from './[id]'
 
 interface Props {}
@@ -28,21 +29,9 @@ const StarWars: NextPage = ({}) => {
   if (!resData) return <p className="font-bold text-rose-600">Data not found.</p>
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className="flex flex-col gap-4">
       {resData.map(person => (
-        <div>
-          <p>Name: {person.name}</p>
-          <p>
-            Details:{' '}
-            <a
-              href={person.url}
-              target="_blank"
-              className="text-emerald-600 underline hover:text-emerald-500"
-            >
-              {person.url}
-            </a>
-          </p>
-        </div>
+        <PersonInfo key={person.url} person={person} />
       ))}
     </div>
   )
