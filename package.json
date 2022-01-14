@@ -8,7 +8,8 @@
     "lint": "next lint",
     "pretty:check": "prettier --check ./src",
     "pretty:fix": "prettier --write ./src",
-    "commit": "cz"
+    "cz": "cz",
+    "c": "cz"
   },
   "dependencies": {
     "next": "12.0.8",
