@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { PersonAttribute } from '../pages/star-wars/[id]'
+import { PersonAttribute } from '../pages/star-wars/star-wars'
 
 interface Props {
   person: PersonAttribute
