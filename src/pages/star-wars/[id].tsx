@@ -1,6 +1,9 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import EmptyMessage from '../../components/EmptyMessage'
+import ErrorMessage from '../../components/ErrorMessage'
+import LoadingMessage from '../../components/LoadingMessage'
 import PersonInfo from '../../components/PersonInfo'
 import { ApiResponse } from './star-wars'
 
@@ -43,9 +46,9 @@ const StarWars: NextPage = ({}) => {
     }
   }, [router.isReady]) // depends on empty array, only run once on componentDidMount lifecycle
 
-  if (isLoading) return <p className="font-bold text-blue-600">Loading...</p>
-  if (isError) return <p className="font-bold text-rose-600">Something error.</p>
-  if (!resData) return <p className="font-bold text-rose-600">Data not found.</p>
+  if (isLoading) return <LoadingMessage />
+  if (isError) return <ErrorMessage />
+  if (!resData) return <EmptyMessage />
 
   /**
    * do a type check/property check using in (typescript), inside the ternary operator
@@ -60,10 +63,16 @@ const StarWars: NextPage = ({}) => {
    * ex.
    * return (true/false) ? ifTrue : ifFalse
    */
-  return 'detail' in resData ? (
-    <div>{resData.detail}</div>
-  ) : (
-    <PersonInfo key={resData.url} person={resData} />
+  return (
+    <>
+      <button onClick={() => router.push('/star-wars')}>Go to list</button>
+      <h1 className="mb-5 text-2xl font-bold">Star Wars Person</h1>
+      {'detail' in resData ? (
+        <div>{resData.detail}</div>
+      ) : (
+        <PersonInfo key={resData.url} person={resData} />
+      )}
+    </>
   )
 }
 

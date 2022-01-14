@@ -45,7 +45,7 @@ const SimpleForm: FC<Props> = ({}) => {
     <>
       <form
         name="simple-form"
-        className="flex flex-col gap-2"
+        className="flex flex-col gap-2 text-gray-900"
         onSubmit={e => {
           e.preventDefault()
 
@@ -148,17 +148,16 @@ const SimpleForm: FC<Props> = ({}) => {
         />
 
         {/* we cannot get any data from this element. ref, state, or even name prop is not provided */}
-        <input
-          placeholder="Unrecognized input because we not provide a name prop"
-          type="text"
+        <textarea
+          placeholder="Unrecognized input because we not provide a name property on the html"
           className={inputClassName + ' focus:ring-rose-500'}
-        />
+        ></textarea>
 
         <div className="mt-2"></div>
 
         <button
           type="submit"
-          className="w-full px-5 py-2 mx-auto text-white border rounded lg:px-20 bg-emerald-700"
+          className="w-full px-5 py-2 mx-auto text-white rounded lg:px-20 bg-emerald-700 hover:bg-emerald-600"
         >
           Submit
         </button>

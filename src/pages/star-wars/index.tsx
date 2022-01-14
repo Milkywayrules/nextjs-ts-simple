@@ -69,18 +69,23 @@ const StarWars: NextPage = ({}) => {
 
   return (
     <>
+      <div>
+        <button onClick={() => router.push('/')}>Go to home</button>
+      </div>
       <div className="flex flex-col gap-4">
+        <h1 className="text-2xl font-bold">Star Wars People</h1>
         {resData.map(person => (
-          <>
+          <span className="max-w-md px-4 py-2 border border-gray-200 rounded shadow min-w-fit hover:border-indigo-400">
             <PersonInfo key={person.url} person={person} />
             <div>
+              On app:{' '}
               <Link href={buildUrl(pathname, getSlug(person.url))}>
-                <a className="text-emerald-600 underline hover:text-emerald-500">
+                <a className="underline text-emerald-600 hover:text-emerald-500">
                   {buildUrl(pathname, getSlug(person.url))}
                 </a>
               </Link>
             </div>
-          </>
+          </span>
         ))}
       </div>
     </>
