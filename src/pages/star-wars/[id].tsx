@@ -6,7 +6,7 @@ import { ApiResponse } from './star-wars'
 
 interface Props {}
 
-const fetchPerson = async (id?: string) => {
+const fetchPerson = async (id: string) => {
   const res = await fetch(`https://swapi.dev/api/people/${id}`)
   return await res.json()
 }
@@ -23,17 +23,25 @@ const StarWars: NextPage = ({}) => {
   const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    const newId = Array.isArray(id) ? id[0] : id
+    if (router.isReady) {
+      const newIds = Array.isArray(id) ? (id.length < 1 ? null : id[0]) : id
 
-    // fetch data and then set result into state
-    fetchPerson(newId)
-      .then(json => setResData(json))
-      .catch(err => {
+      if (!newIds) {
         setIsError(true)
-        console.error(err)
-      })
-      .finally(() => setIsLoading(false))
-  }, []) // depends on empty array, only run once on componentDidMount lifecycle
+        setIsLoading(false)
+        return
+      }
+
+      // fetch data and then set result into state
+      fetchPerson(newIds)
+        .then(json => setResData(json))
+        .catch(err => {
+          setIsError(true)
+          console.error(err)
+        })
+        .finally(() => setIsLoading(false))
+    }
+  }, [router.isReady]) // depends on empty array, only run once on componentDidMount lifecycle
 
   if (isLoading) return <p className="font-bold text-blue-600">Loading...</p>
   if (isError) return <p className="font-bold text-rose-600">Something error.</p>
