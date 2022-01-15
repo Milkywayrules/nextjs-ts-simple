@@ -45,7 +45,7 @@ const buildUrl = (pathname: string, slug: string) => `${pathname}/${slug}`
  * Go to localhost:port/star-wars
  */
 const StarWars: NextPage = ({}) => {
-  const [resData, setResData] = useState<PersonAttribute[]>([])
+  const [resData, setResData] = useState<PersonAttribute[]>()
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
@@ -74,6 +74,7 @@ const StarWars: NextPage = ({}) => {
       </div>
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold">Star Wars People</h1>
+
         {resData.map(person => (
           <span className="max-w-md px-4 py-2 border border-gray-200 rounded shadow min-w-fit hover:border-indigo-400">
             <PersonInfo key={person.url} person={person} />

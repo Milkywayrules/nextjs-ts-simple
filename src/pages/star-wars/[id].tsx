@@ -44,7 +44,7 @@ const StarWars: NextPage = ({}) => {
         })
         .finally(() => setIsLoading(false))
     }
-  }, [router.isReady]) // depends on empty array, only run once on componentDidMount lifecycle
+  }, [router.isReady]) // depends on router.isReady, run once on componentDidMount lifecycle and when router.isReady is changed
 
   if (isLoading) return <LoadingMessage />
   if (isError) return <ErrorMessage />

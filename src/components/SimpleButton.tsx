@@ -14,7 +14,7 @@ interface Props {}
  */
 const SimpleButton: FC<Props> = ({}) => {
   return (
-    <button name="example-btn" onClick={e => console.log('Element name:', e.currentTarget.name)}>
+    <button id="simple-btn" name="example-btn" onClick={e => console.log('#simple-btn:', e)}>
       Click me!
     </button>
   )

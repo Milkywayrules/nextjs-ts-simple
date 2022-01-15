@@ -44,6 +44,7 @@ const SimpleForm: FC<Props> = ({}) => {
     // this is called fragment, same as <React.Fragment> blablabla... </React.Fragment>
     <>
       <form
+        id="simple-form"
         name="simple-form"
         className="flex flex-col gap-2 text-gray-900"
         onSubmit={e => {
@@ -163,9 +164,11 @@ const SimpleForm: FC<Props> = ({}) => {
         </button>
       </form>
 
-      <p>Your first name is: {(firstnameRef.current && firstnameRef.current.value) || '-'}</p>
-      <p>Your username is: {usernameState || '-'}</p>
-      <p>Your password is: {mixedInputElement.password || '-'}</p>
+      <div className="mt-5">
+        <p>Your first name is: {(firstnameRef.current && firstnameRef.current.value) || '-'}</p>
+        <p>Your username is: {usernameState || '-'}</p>
+        <p>Your password is: {mixedInputElement.password || '-'}</p>
+      </div>
     </>
   )
 }
