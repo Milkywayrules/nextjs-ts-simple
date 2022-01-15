@@ -14,6 +14,7 @@ const PersonInfo: FC<Props> = ({ person }) => {
         <a
           href={person.url}
           target="_blank"
+          rel="noreferrer"
           className="text-emerald-600 underline hover:text-emerald-500"
         >
           {person.url}

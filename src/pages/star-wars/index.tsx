@@ -49,6 +49,9 @@ const StarWars: NextPage = ({}) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
+  const router = useRouter()
+  const pathname = router.pathname
+
   useEffect(() => {
     // fetch data and then set result into state
     fetchPerson()
@@ -64,9 +67,6 @@ const StarWars: NextPage = ({}) => {
   if (isError) return <ErrorMessage />
   if (!resData) return <EmptyMessage />
 
-  const router = useRouter()
-  const pathname = router.pathname
-
   return (
     <>
       <div>
@@ -76,7 +76,10 @@ const StarWars: NextPage = ({}) => {
         <h1 className="text-2xl font-bold">Star Wars People</h1>
 
         {resData.map(person => (
-          <span className="max-w-md px-4 py-2 border border-gray-200 rounded shadow min-w-fit hover:border-indigo-400">
+          <span
+            key={person.url}
+            className="max-w-md px-4 py-2 border border-gray-200 rounded shadow min-w-fit hover:border-indigo-400"
+          >
             <PersonInfo key={person.url} person={person} />
             <div>
               On app:{' '}
